@@ -142,6 +142,25 @@ type dType struct {
 	rt    reflect.Type
 }
 
+type Dtype struct {
+	Str  string
+	Size int
+	Rt   reflect.Type
+}
+
+func NewDtype(str string) (Dtype, error) {
+	t, err := newDtype(str)
+	if err != nil {
+		return Dtype{}, err
+	}
+	dt := Dtype{
+		Str:  t.str,
+		Size: t.size,
+		Rt:   t.rt,
+	}
+	return dt, nil
+}
+
 func newDtype(str string) (dType, error) {
 	var (
 		err error
